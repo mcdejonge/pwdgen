@@ -223,18 +223,14 @@ class PwdGen {
      * Generate a password consisting of words in the current language.
      */
     public function generateWordPassword() {
-        return $this->generatePasswordUsingGenerator(function() {
-            return $this->getWordForLanguage();
-        });
+        return $this->generatePasswordUsingGenerator('getWordForLanguage');
     }
 
     /**
      * Generate a password consisting of nonsense syllables.
      */
     public function generateNonsensePassword() {
-        return $this->generatePasswordUsingGenerator(function() {
-            return $this->generateSyllable();
-        });
+        return $this->generatePasswordUsingGenerator('generateSyllable');
     }
 
     /**
@@ -249,7 +245,21 @@ class PwdGen {
         $minLengthForWords = $this->minLength - $this->numDigits - $this->numPunctuationSymbols;
         while(strlen($string) < $minLengthForWords) {
             $previousEndPosition = strlen($string);
-            $word = $wordGeneratingFunction();
+            $word = '';
+            // My own host does not have a PHP version that is new enough
+            // to allow calls to object methods in anonymous functions. Hence
+            // this ugly workaround.
+            if(is_string($wordGeneratingFunction)) {
+                if($wordGeneratingFunction == 'getWordForLanguage') {
+                    $word = $this->getWordForLanguage();
+                }
+                else if ($wordGeneratingFunction == 'generateSyllable') {
+                    $word = $this->generateSyllable();
+                }
+            }
+            else {
+                $word = $wordGeneratingFunction();
+            }
             if($this->capitalizeWords) {
                 $word = ucfirst($word);
             }
