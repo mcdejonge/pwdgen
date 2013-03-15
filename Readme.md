@@ -14,8 +14,8 @@ The default index.php is pretty usable. It outputs passwords in English and Dutc
 
 The PwdGen class provides some opportunities for tweaking out of the box. You can set the following attributes:
 
-* capitalizeWords : whether to capitalize the first characters of words or not. Defaults to true.
-* language : the language to use for passwords that consist of real words concatenated together. The value of this parameter determines the name of the word list file that will be used. For example: if the value is "nl" a file "words/nl.txt" is used. By default word lists are available for English ("en") and for Dutch ("nl"), but you can also add your own. Defaults to "en".
+* **capitalizeWords** : whether to capitalize the first characters of words or not. Defaults to true.
+* **language** : the language to use for passwords that consist of real words concatenated together. The value of this parameter determines the name of the word list file that will be used. For example: if the value is "nl" a file "words/nl.txt" is used. By default word lists are available for English ("en") and for Dutch ("nl"), but you can also add your own. Defaults to "en".
 * **minLength** : the minimum length a password should have. Passwords that consist of words concatenated together may be longer than this. Defaults to 12.
 * **numDigits** : the number of digits that will be added to the password. For passwords that consist of words concated together digits are injected inbetween individual words. For random passwords they are injected randomly. Defaults to 2
 * **numPunctuationSymbols** : the number of punctuation symbols that will be added to the password. For passwords that consist of words concated together punctuation symbols are injected inbetween individual words. For random passwords they are injected randomly. Defaults to 1.
